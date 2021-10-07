@@ -1,17 +1,28 @@
 import express, { Application, Request, Response } from "express";
-import chalk from 'chalk';
+import chalk from "chalk";
 
 class App {
   public app: Application;
 
   constructor() {
     this.app = express();
+    this.plugins();
     this.routes();
   }
 
+  protected plugins(): void {
+    this.app.use(express.json());
+  }
+
   protected routes(): void {
-    this.app.get("/", (req: Request, res: Response) => {
+    const { app } = this;
+
+    app.get("/", (req: Request, res: Response) => {
       res.send("Express Server Using Typescript");
+    });
+
+    app.post("/users", (req: Request, res: Response) => {
+      res.json(req.body);
     });
   }
 }
