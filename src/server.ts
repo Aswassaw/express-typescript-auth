@@ -1,4 +1,5 @@
 import express, { Application, Request, Response } from "express";
+import morgan from "morgan";
 import chalk from "chalk";
 
 class App {
@@ -12,6 +13,7 @@ class App {
 
   protected plugins(): void {
     this.app.use(express.json());
+    this.app.use(morgan("dev"));
   }
 
   protected routes(): void {
