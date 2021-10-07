@@ -1,4 +1,7 @@
 import express, { Application, Request, Response } from "express";
+import helmet from "helmet";
+import cors from "cors";
+import compression from "compression";
 import morgan from "morgan";
 import chalk from "chalk";
 
@@ -12,8 +15,13 @@ class App {
   }
 
   protected plugins(): void {
-    this.app.use(express.json());
-    this.app.use(morgan("dev"));
+    const { app } = this;
+
+    app.use(express.json());
+    app.use(helmet());
+    app.use(cors());
+    app.use(compression());
+    app.use(morgan("dev"));
   }
 
   protected routes(): void {
