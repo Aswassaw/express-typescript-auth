@@ -5,6 +5,9 @@ import compression from "compression";
 import morgan from "morgan";
 import chalk from "chalk";
 
+// Import Routes
+import UsersRoutes from "./routes/UsersRoutes";
+
 class App {
   public app: Application;
 
@@ -31,9 +34,7 @@ class App {
       res.send("Express Server Using Typescript");
     });
 
-    app.post("/users", (req: Request, res: Response) => {
-      res.json(req.body);
-    });
+    app.use("/users", UsersRoutes);
   }
 }
 
