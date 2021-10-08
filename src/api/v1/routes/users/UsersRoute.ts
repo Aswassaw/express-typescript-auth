@@ -1,5 +1,6 @@
 import BaseRoutes from "../BaseRoutes";
 import UsersController from "../../controllers/users/UsersController";
+import Authorization from "../../middlewares/Authorization.ts";
 
 class UsersRoute extends BaseRoutes {
   constructor() {
@@ -10,15 +11,15 @@ class UsersRoute extends BaseRoutes {
     const { router } = this;
 
     // @GET     | /api/v1/users
-    router.get("/", UsersController.index);
+    router.get("/", Authorization, UsersController.index);
     // @POST    | /api/v1/users
-    router.post("/", UsersController.create);
+    router.post("/", Authorization, UsersController.create);
     // @GET     | /api/v1/users/:id
-    router.get("/:id", UsersController.show);
+    router.get("/:id", Authorization, UsersController.show);
     // @PUT     | /api/v1/users/:id
-    router.put("/:id", UsersController.update);
+    router.put("/:id", Authorization, UsersController.update);
     // @DELETE  | /api/v1/users/:id
-    router.delete("/:id", UsersController.delete);
+    router.delete("/:id", Authorization, UsersController.delete);
   }
 }
 
