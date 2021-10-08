@@ -6,7 +6,7 @@ import morgan from "morgan";
 import chalk from "chalk";
 
 // Import Routes
-import UsersRoutes from "./routes/users/UsersRoutes";
+import UsersRoute from "./routes/users/UsersRoute";
 
 class App {
   public app: Application;
@@ -34,7 +34,7 @@ class App {
       res.send("Express Server Using Typescript");
     });
 
-    app.use("/users", UsersRoutes);
+    app.use("/users", UsersRoute);
   }
 }
 
