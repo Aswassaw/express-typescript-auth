@@ -1,0 +1,8 @@
+- Init Sequelize
+./node_modules/.bin/sequelize-cli init
+
+- Create Model & Migration
+./node_modules/.bin/sequelize-cli model:generate --name User --attributes username:string,password:string --underscored
+
+- Migrate Database
+./node_modules/.bin/sequelize-cli db:migrate

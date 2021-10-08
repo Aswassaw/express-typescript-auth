@@ -1,6 +1,6 @@
 import BaseRoutes from "../BaseRoutes";
 import UsersController from "../../controllers/users/UsersController";
-import Authorization from "../../middlewares/Authorization.ts";
+import Authorization from "../../middlewares/Authorization";
 
 class UsersRoute extends BaseRoutes {
   constructor() {
