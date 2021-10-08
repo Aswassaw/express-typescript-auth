@@ -3,6 +3,7 @@ import helmet from "helmet";
 import cors from "cors";
 import compression from "compression";
 import morgan from "morgan";
+import dotenv from 'dotenv';
 import chalk from "chalk";
 
 // Import Routes (v1)
@@ -15,6 +16,7 @@ class App {
     this.app = express();
     this.plugins();
     this.routes();
+    dotenv.config();
   }
 
   protected plugins(): void {
@@ -46,4 +48,6 @@ app.listen(port, () => {
   console.log(`Server started on port ${port}`);
   console.log(chalk`Visit {rgb(128, 237, 153) http://localhost:${port}}`);
   console.log(chalk`Developed by {rgb(255, 92, 88) Andry Pebrianto}`);
+
+  console.log(process.env.DB_HOST);
 });
