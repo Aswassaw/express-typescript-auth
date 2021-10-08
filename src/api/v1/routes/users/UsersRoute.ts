@@ -1,13 +1,9 @@
-import { Router } from "express";
-import UsersRouteInterface from "./UsersRouteInterface";
+import BaseRoutes from "../BaseRoutes";
 import UsersController from "../../controllers/users/UsersController";
 
-class UsersRoute implements UsersRouteInterface {
-  public router: Router;
-
+class UsersRoute extends BaseRoutes {
   constructor() {
-    this.router = Router();
-    this.routes();
+    super();
   }
 
   public routes(): void {

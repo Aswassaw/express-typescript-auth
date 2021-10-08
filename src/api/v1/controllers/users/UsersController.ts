@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import UsersControllerInterface from "./UsersControllerInterface";
+import ControllerInterface from "../ControllerInterface";
 
 let data: any[] = [
   { id: 1, name: "Andry Pebrianto" },
@@ -7,7 +7,7 @@ let data: any[] = [
   { id: 3, name: "Adi Cahyionio" },
 ];
 
-class UsersController implements UsersControllerInterface {
+class UsersController implements ControllerInterface {
   // @GET     | /api/v1/users
   index(req: Request, res: Response): Response {
     return res.json(data);
