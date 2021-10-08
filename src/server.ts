@@ -6,7 +6,7 @@ import morgan from "morgan";
 import chalk from "chalk";
 
 // Import Routes
-import UsersRoutes from "./routes/UsersRoutes";
+import UsersRoutes from "./routes/users/UsersRoutes";
 
 class App {
   public app: Application;
