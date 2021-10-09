@@ -3,7 +3,7 @@ import helmet from "helmet";
 import cors from "cors";
 import compression from "compression";
 import morgan from "morgan";
-import dotenv from 'dotenv';
+import dotenv from "dotenv";
 import chalk from "chalk";
 
 // Import Routes (v1)

@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 
 interface UsersControllerInterface {
-  index(req: Request, res: Response): Response;
+  index(req: Request, res: Response): Promise<Response>;
   create(req: Request, res: Response): Response;
   show(req: Request, res: Response): Response;
   update(req: Request, res: Response): Response;

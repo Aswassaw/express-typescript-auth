@@ -1,5 +1,8 @@
 import { Request, Response } from "express";
 import ControllerInterface from "../ControllerInterface";
+import db from "../../db/models";
+
+const DB: any = db;
 
 let data: any[] = [
   { id: 1, name: "Andry Pebrianto" },
@@ -9,9 +12,12 @@ let data: any[] = [
 
 class UsersController implements ControllerInterface {
   // @GET     | /api/v1/users
-  index(req: Request, res: Response): Response {
-    return res.json(data);
-  }
+  index = async (req: Request, res: Response): Promise<Response> => {
+    const user = await DB.user.findOne({
+      where: { id: req.app.locals.credentials.user.id },
+    });
+    return res.json({ user, data });
+  };
 
   // @POST    | /api/v1/users
   create(req: Request, res: Response): Response {
