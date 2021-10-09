@@ -2,7 +2,7 @@
 ./node_modules/.bin/sequelize-cli init
 
 - Create Model & Migration
-./node_modules/.bin/sequelize-cli model:generate --name User --attributes username:string,password:string --underscored
+./node_modules/.bin/sequelize-cli model:generate --name user --attributes username:string,email:string,password:string --underscored
 
 - Migrate Database
 ./node_modules/.bin/sequelize-cli db:migrate

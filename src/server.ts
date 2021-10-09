@@ -7,6 +7,7 @@ import dotenv from 'dotenv';
 import chalk from "chalk";
 
 // Import Routes (v1)
+import AuthRoute from "./api/v1/routes/auth/AuthRoute";
 import UsersRoute from "./api/v1/routes/users/UsersRoute";
 
 class App {
@@ -37,6 +38,7 @@ class App {
     });
 
     // Routes (v1)
+    app.use("/api/v1/auth", AuthRoute);
     app.use("/api/v1/users", UsersRoute);
   }
 }
@@ -48,6 +50,4 @@ app.listen(port, () => {
   console.log(`Server started on port ${port}`);
   console.log(chalk`Visit {rgb(128, 237, 153) http://localhost:${port}}`);
   console.log(chalk`Developed by {rgb(255, 92, 88) Andry Pebrianto}`);
-
-  console.log(process.env.DB_HOST);
 });

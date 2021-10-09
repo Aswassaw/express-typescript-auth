@@ -10,9 +10,9 @@ class AuthRoute extends BaseRoutes {
     const { router } = this;
 
     // @POST     | /api/v1/auth/register
-    router.post("/", AuthController.register);
+    router.post("/register", AuthController.register);
     // @POST     | /api/v1/auth/login
-    router.post("/", AuthController.login);
+    router.post("/login", AuthController.login);
   }
 }
 

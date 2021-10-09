@@ -3,10 +3,10 @@ require("dotenv").config();
 
 if (process.env.NODE_ENV == "development") {
   module.exports = {
-    "config": path.resolve("src/config", "database.js"),
-    "models-path": path.resolve("src/db", "models"),
-    "seeders-path": path.resolve("src/db", "seeders"),
-    "migrations-path": path.resolve("src/db", "migrations"),
+    "config": path.resolve("src/api/v1/config", "database.js"),
+    "models-path": path.resolve("src/api/v1/db", "models"),
+    "seeders-path": path.resolve("src/api/v1/db", "seeders"),
+    "migrations-path": path.resolve("src/api/v1/db", "migrations"),
   };
 } else {
   module.exports = {
