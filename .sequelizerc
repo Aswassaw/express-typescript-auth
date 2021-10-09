@@ -10,9 +10,9 @@ if (process.env.NODE_ENV == "development") {
   };
 } else {
   module.exports = {
-    "config": path.resolve("build/config", "database.js"),
-    "models-path": path.resolve("build/db", "models"),
-    "seeders-path": path.resolve("build/db", "seeders"),
-    "migrations-path": path.resolve("build/db", "migrations"),
+    "config": path.resolve("build/api/v1/config", "database.js"),
+    "models-path": path.resolve("build/api/v1/db", "models"),
+    "seeders-path": path.resolve("build/api/v1/db", "seeders"),
+    "migrations-path": path.resolve("build/api/v1/db", "migrations"),
   };
 }
