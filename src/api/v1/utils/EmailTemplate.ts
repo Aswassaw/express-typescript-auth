@@ -1,4 +1,4 @@
-class CreateEmailTemplate {
+class EmailTemplate {
   static emailTemplateTop: string = `
   <!DOCTYPE html>
   <html lang="id">
@@ -80,4 +80,4 @@ class CreateEmailTemplate {
   }
 }
 
-export default CreateEmailTemplate;
+export default EmailTemplate;

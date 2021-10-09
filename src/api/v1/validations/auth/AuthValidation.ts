@@ -17,11 +17,11 @@ class AuthValidation {
     }),
   ];
 
-  // // Validation: v1/auth/login
-  // const loginValidation = [
-  //   check("email", "Please include a valid email").isEmail(),
-  //   check("password", "Password is required").not().isEmpty(),
-  // ];
+  // @POST     | /api/v1/auth/login
+  public loginValidation = [
+    check("email", "Please include a valid email").isEmail(),
+    check("password", "Password is required").not().isEmpty(),
+  ];
 }
 
 export default new AuthValidation();
