@@ -2,8 +2,8 @@ import { Request, Response } from "express";
 import { validationResult } from "express-validator";
 import crypto from "crypto";
 import db from "../../db/models";
-import CreateEmailTemplate from "../../utils/CreateEmailTemplate";
 import PasswordHash from "../../utils/PasswordHash";
+import CreateEmailTemplate from "../../utils/CreateEmailTemplate";
 import SendEmail from "../../utils/SendEmail";
 
 const DB: any = db;
@@ -16,6 +16,20 @@ class AuthController {
 
     try {
       let { username, email, password } = req.body;
+
+      const user = await DB.user.findAll({
+        where: {
+          email,
+        },
+      });
+
+      // Return error if email already exist
+      if (user)
+        return res
+          .status(400)
+          .json({ errors: [{ msg: "User already exists" }] });
+
+      // Create newUser object
       const newUser = {
         username,
         email,
@@ -24,8 +38,9 @@ class AuthController {
       newUser.password = await PasswordHash.hash(password);
 
       // Insert user
-      // await DB.user.create(newUser);
+      await DB.user.create(newUser);
 
+      // Create token object
       const token = crypto.randomBytes(35).toString("hex");
       const newToken = {
         email: newUser.email,
@@ -34,7 +49,7 @@ class AuthController {
       };
 
       // Insert token
-      // await DB.token.create(newToken);
+      await DB.token.create(newToken);
 
       // Send email
       const templateEmail = {
@@ -46,7 +61,7 @@ class AuthController {
           newToken.token
         ),
       };
-      // SendEmail.send(templateEmail);
+      SendEmail.send(templateEmail);
 
       return res.json({
         msg: "Registration Success",
