@@ -18,7 +18,8 @@ module.exports = {
         type: Sequelize.STRING
       },
       verified: {
-        type: Sequelize.BOOLEAN
+        type: Sequelize.TINYINT,
+        defaultValue: 0,
       },
       created_at: {
         allowNull: false,

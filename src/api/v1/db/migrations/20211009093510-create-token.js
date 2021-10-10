@@ -12,7 +12,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       token: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       type: {
         type: Sequelize.STRING

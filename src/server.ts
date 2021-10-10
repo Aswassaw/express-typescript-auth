@@ -9,6 +9,7 @@ import chalk from "chalk";
 // Import Routes (v1)
 import AuthRoute from "./api/v1/routes/auth/AuthRoute";
 import UsersRoute from "./api/v1/routes/users/UsersRoute";
+import TodosRoute from "./api/v1/routes/todos/TodosRoute";
 
 class App {
   public app: Application;
@@ -40,6 +41,7 @@ class App {
     // Routes (v1)
     app.use("/api/v1/auth", AuthRoute);
     app.use("/api/v1/users", UsersRoute);
+    app.use("/api/v1/todos", TodosRoute);
   }
 }
 
