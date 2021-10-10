@@ -9,10 +9,8 @@ class TodosController implements ControllerInterface {
   // @GET     | /api/v1/todos
   index = async (req: Request, res: Response): Promise<Response> => {
     try {
-      // const user = await DB.user.findOne({
-      //   where: { id: req.app.locals.credentials.user.id },
-      // });
-      const todos = DB.todo.findAll();
+      const todos = await DB.todo.findAll({ include: { association: "user" } });
+
       return res.json(todos);
     } catch (error) {
       console.log(error);
@@ -52,7 +50,20 @@ class TodosController implements ControllerInterface {
   // @GET     | /api/v1/todos/:id
   show = async (req: Request, res: Response): Promise<Response> => {
     try {
-      return res.json(3);
+      const user = await DB.user.findOne({
+        where: { id: req.app.locals.credentials.user.id },
+      });
+
+      // Check if user exist
+      if (!user)
+        return res.status(400).json({ errors: [{ msg: "User not found" }] });
+
+      const todo = await DB.todo.findOne({
+        where: { id: req.params.id },
+        include: { association: "user" },
+      });
+
+      return res.json(todo);
     } catch (error) {
       console.log(error);
       return res.status(500).send("Server Error");
