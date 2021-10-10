@@ -9,10 +9,11 @@ class TodosController implements ControllerInterface {
   // @GET     | /api/v1/todos
   index = async (req: Request, res: Response): Promise<Response> => {
     try {
-      const user = await DB.user.findOne({
-        where: { id: req.app.locals.credentials.user.id },
-      });
-      return res.json(1);
+      // const user = await DB.user.findOne({
+      //   where: { id: req.app.locals.credentials.user.id },
+      // });
+      const todos = DB.todo.findAll();
+      return res.json(todos);
     } catch (error) {
       console.log(error);
       return res.status(500).send("Server Error");
@@ -25,7 +26,23 @@ class TodosController implements ControllerInterface {
     if (!errors.isEmpty()) return res.status(400).json(errors);
 
     try {
-      return res.json(2);
+      let { title, description } = req.body;
+
+      const user = await DB.user.findOne({
+        where: { id: req.app.locals.credentials.user.id },
+      });
+
+      // Check if user exist
+      if (!user)
+        return res.status(400).json({ errors: [{ msg: "User not found" }] });
+
+      // Create newUser object
+      const newTodo = { user_id: user.id, title, description };
+
+      // Insert todo
+      await DB.todo.create(newTodo);
+
+      return res.json({ msg: "Todo created" });
     } catch (error) {
       console.log(error);
       return res.status(500).send("Server Error");
@@ -34,7 +51,12 @@ class TodosController implements ControllerInterface {
 
   // @GET     | /api/v1/todos/:id
   show = async (req: Request, res: Response): Promise<Response> => {
-    return res.json(3);
+    try {
+      return res.json(3);
+    } catch (error) {
+      console.log(error);
+      return res.status(500).send("Server Error");
+    }
   };
 
   // @PUT     | /api/v1/todos/:id
@@ -49,7 +71,12 @@ class TodosController implements ControllerInterface {
 
   // @DELETE  | /api/v1/todos/:id
   delete = async (req: Request, res: Response): Promise<Response> => {
-    return res.json(5);
+    try {
+      return res.json(5);
+    } catch (error) {
+      console.log(error);
+      return res.status(500).send("Server Error");
+    }
   };
 }
 

@@ -20,21 +20,21 @@ class UsersController implements ControllerInterface {
   };
 
   // @POST    | /api/v1/users
-  create(req: Request, res: Response): Response {
+  create = async (req: Request, res: Response): Promise<Response> => {
     data.push({ id: data.length + 1, name: req.body.name });
-    return res.json({ msg: "User added" });
-  }
+    return res.json({ msg: "User created" });
+  };
 
   // @GET     | /api/v1/users/:id
-  show(req: Request, res: Response): Response {
+  show = async (req: Request, res: Response): Promise<Response> => {
     const { id } = req.params;
     const user = data.find((item) => item.id == id);
 
     return res.json(user);
-  }
+  };
 
   // @PUT     | /api/v1/users/:id
-  update(req: Request, res: Response): Response {
+  update = async (req: Request, res: Response): Promise<Response> => {
     const { id } = req.params;
     const { name } = req.body;
 
@@ -47,15 +47,15 @@ class UsersController implements ControllerInterface {
     });
 
     return res.json({ msg: "User updated" });
-  }
+  };
 
   // @DELETE  | /api/v1/users/:id
-  delete(req: Request, res: Response): Response {
+  delete = async (req: Request, res: Response): Promise<Response> => {
     const { id } = req.params;
     data = data.filter((item) => item.id != id);
 
     return res.json({ msg: "User deleted" });
-  }
+  };
 }
 
 export default new UsersController();
